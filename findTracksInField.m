@@ -8,7 +8,7 @@ BOM = maskImageG(gradientImage, field, 5);
 
 [vectors, Ihit] = findLines(BOM);
 
-vectors = filterVectors(vectors, 1, pi/28);
+vectors = filterVectors(vectors, 1, pi/4);
 
 end
 

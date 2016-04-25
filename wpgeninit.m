@@ -1,5 +1,7 @@
 close all
-%clear all;
+if exist('gradientImage', 'var') == 0 
+clear all;
+end
 warning('off', 'all')
 % addpath(genpath('/home/cmath/jsonlab'))
 
@@ -27,7 +29,9 @@ I = im2double(imread(imageName));
 
 % Generating data - The important part
 
-%[fieldAreas, gradientImage] = processImage(I, true);
+if exist('gradientImage', 'var') == 0 
+[fieldAreas, gradientImage] = processImage(I, true);
+end
 
 disp('done processing');
 

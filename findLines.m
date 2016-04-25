@@ -27,7 +27,7 @@ for i = 1:s(2);
             
             for k = 2:s_points(1)
                 if  hitI(j,i) == 0
-                [hit, fVec, tVec] = checkIfLine(I,i,j,points(k,1),points(k,2), 8, 150, 10);
+                [hit, fVec, tVec] = checkIfLine(I,i,j,points(k,1),points(k,2), 5, 180, 8);
                 if hit == 1 && hitI(tVec(2), tVec(1)) == 0
                     
                     linesV(end + 1,:,:) = [fVec tVec];
