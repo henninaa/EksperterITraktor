@@ -29,11 +29,14 @@ I = im2double(imread(imageName));
 
 % Generating data - The important part
 
-if exist('gradientImage', 'var') == 0 
-[fieldAreas, gradientImage] = processImage(I, true);
+if exist('gradientImage', 'var') == 0
+    disp('Generating image data');
+    [fieldAreas, gradientImage] = processImage(I, true);
+    disp('done processing');
+else
+    disp('Using existing image data');
 end
 
-disp('done processing');
 
 while true
 	bytesRead = 0;
@@ -52,7 +55,7 @@ while true
 
     end
     
-   
+
     fieldToFindTracks = whichFieldIsPoint(fieldAreas, area);
     
     if fieldToFindTracks == -1
@@ -63,7 +66,7 @@ while true
     
     disp('Hit');
     disp(fieldToFindTracks);
-    
+    disp('Locating tracks');
     [vectors,recreated] = findTracksInField(gradientImage, fieldAreas, fieldToFindTracks);
     
     disp('found vectors');
