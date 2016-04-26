@@ -2,6 +2,14 @@ function [ allFieldAreas, gradientImage ] = processImage( image, demo )
 %PROCESSIMAGE Summary of this function goes here
 %   Detailed explanation goes here
 
+fig = 1;
+
+if demo
+    figure(fig);
+    imshow(image);
+    fig = fig + 1;
+end
+
 I = image;
 factor = 5;
 
@@ -27,6 +35,13 @@ po = [
 
 I_s_l = nonlinearStretch(I,2,0.1,0.53);
 
+
+if demo
+    figure(fig);
+    imshow(I_s_l);
+    fig = fig + 1;
+end
+
 treshold = 0.1;
 c = 1;
 gamma = 0.8;
@@ -37,6 +52,13 @@ for i = 1:s(1)
     for j = 1:s(2)
        I_s_l(i,j,:) = gammaImg(i,j,:).^gamma;
     end
+end
+
+
+if demo
+    figure(fig);
+    imshow(I_s_l);
+    fig = fig + 1;
 end
 
 scale = 1.3;
@@ -76,6 +98,13 @@ for i = 1:s(1)
     end
 end
 
+
+if demo
+    figure(fig);
+    imshow(convImgGrad);
+    fig = fig + 1;
+end
+
 SE = strel('square',3);
 
 A = convImgGrad;
@@ -101,6 +130,12 @@ I_AV = I;
 A_AV = ConvolutionRGB(I2,AV_P);
 %A_AV = ConvolutionRGB(A_AV,AV_P);
 
+if demo
+    figure(fig);
+    imshow(A_AV);
+    fig = fig + 1;
+end
+
 %growT = 0.0139;
 growT = 0.012;
 sizeT = 2000;
@@ -118,6 +153,12 @@ A_GG = A_GG_R .* A_GG_G .* A_GG_B;
 SE = strel('square',5);
 
 A_GGC = morphClose( A_GG,SE );
+
+if demo
+    figure(fig);
+    imshow(A_GGC(2));
+    fig = fig + 1;
+end
 
 gradientImage = A;
 
