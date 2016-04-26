@@ -129,7 +129,11 @@ AV_P = makeAverageMatrix( 5 );
 I_AV = I;
 A_AV = ConvolutionRGB(I2,AV_P);
 %A_AV = ConvolutionRGB(A_AV,AV_P);
-
+if demo
+    figure(fig);
+    imshow(A);
+    fig = fig + 1;
+end
 if demo
     figure(fig);
     imshow(A_AV);
@@ -153,11 +157,30 @@ A_GG = A_GG_R .* A_GG_G .* A_GG_B;
 SE = strel('square',5);
 
 A_GGC = morphClose( A_GG,SE );
-
+fieldFig(:,:) = A_GGC(1, :,:);
 if demo
     figure(fig);
-    imshow(A_GGC(2));
+    subplot(2,2,1);
+    imshow(fieldFig);
     fig = fig + 1;
+end
+
+fieldFig(:,:) = A_GGC(2, :,:);
+if demo
+    subplot(2,2,2);
+    imshow(fieldFig);
+end
+
+fieldFig(:,:) = A_GGC(3, :,:);
+if demo
+    subplot(2,2,3);
+    imshow(fieldFig);
+end
+
+fieldFig(:,:) = A_GGC(4, :,:);
+if demo
+    subplot(2,2,4);
+    imshow(fieldFig);
 end
 
 gradientImage = A;

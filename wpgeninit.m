@@ -1,11 +1,11 @@
-close all
+%close all
 if exist('gradientImage', 'var') == 0 
 clear all;
 end
 warning('off', 'all')
 % addpath(genpath('/home/cmath/jsonlab'))
 
-IP = '10.22.71.122';
+IP = '10.22.71.106';
 socket = tcpip(IP, 9191, 'NetworkRole', 'client');
 set(socket, 'Timeout', 0)
 set(socket,'OutputBufferSize',4096);
